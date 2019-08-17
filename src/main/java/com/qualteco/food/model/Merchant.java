@@ -1,12 +1,9 @@
 package com.qualteco.food.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.sql.Date;
 
-//@Entity
+@Entity
 public class Merchant/* extends Base*/{
 
     @Id
@@ -21,7 +18,7 @@ public class Merchant/* extends Base*/{
 
     private boolean deletionFlag;
 
-    @OneToOne(mappedBy = "merchant_address_id")
+    @OneToOne(mappedBy = "merchantId")
     //@JoinColumn(name = "address_id", referencedColumnName = "id")
     private Merchant_Address merchant_addresses;
 

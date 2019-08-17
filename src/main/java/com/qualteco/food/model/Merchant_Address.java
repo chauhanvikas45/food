@@ -1,9 +1,8 @@
 package com.qualteco.food.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
-//@Entity
+@Entity
 public class Merchant_Address {
 
     @Id

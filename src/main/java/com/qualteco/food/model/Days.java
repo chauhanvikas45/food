@@ -1,8 +1,6 @@
 package com.qualteco.food.model;
 
 import com.qualteco.food.constant.WeekDays;
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 
 @Entity
