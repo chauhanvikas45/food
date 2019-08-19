@@ -2,7 +2,7 @@ package com.qualteco.food.model;
 
 import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Merchant_Food_Mapping {
 
     @Id
@@ -11,9 +11,11 @@ public class Merchant_Food_Mapping {
 
     @OneToOne()
     @MapsId
-    private Merchant merchantId;
+    private Merchant merchant;
 
-    private Food_Menu food_menu_d;
+    @OneToOne
+    @MapsId
+    private Food_Menu food_menu;
 
     public Merchant_Food_Mapping() {
     }
@@ -26,19 +28,19 @@ public class Merchant_Food_Mapping {
         this.id = id;
     }
 
-    public Merchant getMerchantId() {
-        return merchantId;
+    public Merchant getMerchant() {
+        return merchant;
     }
 
-    public void setMerchantId(Merchant merchantId) {
-        this.merchantId = merchantId;
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 
-    public Food_Menu getFood_menu_d() {
-        return food_menu_d;
+    public Food_Menu getFood_menu() {
+        return food_menu;
     }
 
-    public void setFood_menu_d(Food_Menu food_menu_d) {
-        this.food_menu_d = food_menu_d;
+    public void setFood_menu(Food_Menu food_menu) {
+        this.food_menu = food_menu;
     }
 }

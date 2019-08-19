@@ -1,9 +1,7 @@
+/*
 package com.qualteco.food.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 //@Entity
@@ -13,7 +11,12 @@ public class Employee_Opt_Out_Table {
     private int id;
 
     //TODO mapping
-    private Employee employeeId;
+ */
+/*   @OneToOne
+    @MapsId*//*
+
+    private Employee employee;
+
     private Date optOutFrom;
     private Date OptOutTo;
 
@@ -29,12 +32,12 @@ public class Employee_Opt_Out_Table {
         this.id = id;
     }
 
-    public Employee getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Date getOptOutFrom() {
@@ -55,3 +58,4 @@ public class Employee_Opt_Out_Table {
 
 
 }
+*/

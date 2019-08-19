@@ -1,11 +1,8 @@
 package com.qualteco.food.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,11 +13,35 @@ public class Employee {
 
     private boolean deletionFlag;
 
-    private Merchant merchantId;
+    //@OneToOne(mappedBy = "employee")
+    //private Employee_Opt_Out_Table employee_opt_out_table;
+
+    @OneToOne
+    @MapsId
+    private Merchant merchant;
+/*
+    //@OneToOne(mappedBy = "employee")
+    private Employee_Order_Details employee_order_details;
 
 
     public Employee() {
     }
+
+    public Employee_Order_Details getEmployee_order_details() {
+        return employee_order_details;
+    }
+
+    public void setEmployee_order_details(Employee_Order_Details employee_order_details) {
+        this.employee_order_details = employee_order_details;
+    }
+
+    public Employee_Opt_Out_Table getEmployee_opt_out_table() {
+        return employee_opt_out_table;
+    }
+
+    public void setEmployee_opt_out_table(Employee_Opt_Out_Table employee_opt_out_table) {
+        this.employee_opt_out_table = employee_opt_out_table;
+    }*/
 
     public int getId() {
         return id;
@@ -54,11 +75,11 @@ public class Employee {
         this.deletionFlag = deletionFlag;
     }
 
-    public Merchant getMerchantId() {
-        return merchantId;
+    public Merchant getMerchant() {
+        return merchant;
     }
 
-    public void setMerchantId(Merchant merchantId) {
-        this.merchantId = merchantId;
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }

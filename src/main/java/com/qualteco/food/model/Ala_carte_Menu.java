@@ -1,11 +1,8 @@
 package com.qualteco.food.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Ala_carte_Menu {
 
     @Id
@@ -15,7 +12,18 @@ public class Ala_carte_Menu {
     private String itemName;
     private String description;
 
+    @OneToOne(mappedBy = "ala_carte_menu")
+    private Employee_Order_Details employee_order_details;
+
     public Ala_carte_Menu() {
+    }
+
+    public Employee_Order_Details getEmployee_order_details() {
+        return employee_order_details;
+    }
+
+    public void setEmployee_order_details(Employee_Order_Details employee_order_details) {
+        this.employee_order_details = employee_order_details;
     }
 
     public int getId() {

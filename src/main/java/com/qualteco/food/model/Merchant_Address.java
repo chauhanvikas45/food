@@ -15,7 +15,7 @@ public class Merchant_Address {
     //TODO mapping
     @OneToOne()
     @MapsId
-    private Merchant merchantId;
+    private Merchant merchant;
 
     public Merchant_Address() {
     }
@@ -53,10 +53,10 @@ public class Merchant_Address {
     }
 
     public Merchant getMerchantId() {
-        return merchantId;
+        return merchant;
     }
 
     public void setMerchantId(Merchant merchantId) {
-        this.merchantId = merchantId;
+        this.merchant = merchantId;
     }
 }

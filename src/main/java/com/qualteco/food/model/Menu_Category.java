@@ -1,21 +1,29 @@
 package com.qualteco.food.model;
 
 import com.qualteco.food.constant.Category;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 
-//@Entity
+@TypeDef(
+        name = "category_enum",
+        typeClass = Category.class
+)
+@Entity
 public class Menu_Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Enumerated(EnumType.STRING)
 
-    @OneToOne
-    @MapsId
+    @Enumerated(EnumType.ORDINAL)
+    @Type(type = "category_enum")
     private Category categoryName;
+
+    @OneToOne(mappedBy = "menu_category")
+    private Food_Menu food_menu;
 
     public Menu_Category() {
     }

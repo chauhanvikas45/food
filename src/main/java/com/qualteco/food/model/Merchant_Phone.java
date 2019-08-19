@@ -2,7 +2,7 @@ package com.qualteco.food.model;
 
 import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Merchant_Phone {
 
     @Id
@@ -12,13 +12,20 @@ public class Merchant_Phone {
     private Integer phoneNumber;
     private String contactType;
 
-    //TODO mapping
-    @OneToOne(mappedBy = "merchant_phones")
+    @OneToOne()
     @MapsId
-    private Merchant merchantId;
+    private Merchant merchant;
 
 
     public Merchant_Phone() {
+    }
+
+    public Merchant getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 
     public int getId() {
@@ -45,11 +52,4 @@ public class Merchant_Phone {
         this.contactType = contactType;
     }
 
-    public Merchant getMerchantId() {
-        return merchantId;
-    }
-
-    public void setMerchantId(Merchant merchantId) {
-        this.merchantId = merchantId;
-    }
 }
