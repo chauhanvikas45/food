@@ -13,8 +13,8 @@ public class Merchant_Address {
     private String landmark;
 
     //TODO mapping
-    @OneToOne()
-    @MapsId
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MERCHANT_ID")
     private Merchant merchant;
 
     public Merchant_Address() {
@@ -52,11 +52,11 @@ public class Merchant_Address {
         this.landmark = landmark;
     }
 
-    public Merchant getMerchantId() {
+    public Merchant getMerchant() {
         return merchant;
     }
 
-    public void setMerchantId(Merchant merchantId) {
-        this.merchant = merchantId;
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }

@@ -1,10 +1,20 @@
 package com.qualteco.food.model;
 
+import java.sql.Date;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import javax.persistence.*;
-import java.sql.Date;
 
 @Entity
 public class Merchant/* extends Base*/{
@@ -21,57 +31,34 @@ public class Merchant/* extends Base*/{
 
     private boolean deletionFlag;
 
-    @OneToOne(mappedBy = "merchant")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
     //@JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Merchant_Address merchant_addresses;
+    private Set<Merchant_Address> merchant_addresses;
 
-    @OneToOne(mappedBy = "merchant")
-    private Merchant_Phone merchant_phones;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
+    private Set<Merchant_Phone> merchant_phones;
 
 
-    @OneToOne(mappedBy = "merchant")
-    private Merchant_Food_Mapping merchant_food_mapping;
-
-    @OneToOne(mappedBy = "merchant")
-    private Employee employee;
+    /*@OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
+    private Set<Merchant_Food_Mapping> merchant_food_mapping;*/
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "MERCHANT_FOOD_MAPPING",
+            joinColumns = @JoinColumn(name = "MERCHANT_ID", referencedColumnName="id"),
+            inverseJoinColumns = @JoinColumn(name = "FOOD_MENU_ID", referencedColumnName="id")
+    )
+    private Set<Food_Menu> foodMenuList;
+    
+    
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
+    private Set<Employee> employee;
 
 
 
 
 
     public Merchant() {
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Merchant_Phone getMerchant_phones() {
-        return merchant_phones;
-    }
-
-    public void setMerchant_phones(Merchant_Phone merchant_phones) {
-        this.merchant_phones = merchant_phones;
-    }
-
-    public Merchant_Food_Mapping getMerchant_food_mapping() {
-        return merchant_food_mapping;
-    }
-
-    public void setMerchant_food_mapping(Merchant_Food_Mapping merchant_food_mapping) {
-        this.merchant_food_mapping = merchant_food_mapping;
-    }
-
-    public Merchant_Address getMerchant_addresses() {
-        return merchant_addresses;
-    }
-
-    public void setMerchant_addresses(Merchant_Address merchant_addresses) {
-        this.merchant_addresses = merchant_addresses;
     }
 
     public int getId() {
@@ -113,4 +100,48 @@ public class Merchant/* extends Base*/{
     public void setDeletionFlag(boolean deletionFlag) {
         this.deletionFlag = deletionFlag;
     }
+
+	public Set<Merchant_Address> getMerchant_addresses() {
+		return merchant_addresses;
+	}
+
+	public void setMerchant_addresses(Set<Merchant_Address> merchant_addresses) {
+		this.merchant_addresses = merchant_addresses;
+	}
+
+	public Set<Merchant_Phone> getMerchant_phones() {
+		return merchant_phones;
+	}
+
+	public void setMerchant_phones(Set<Merchant_Phone> merchant_phones) {
+		this.merchant_phones = merchant_phones;
+	}
+
+	/*public Set<Merchant_Food_Mapping> getMerchant_food_mapping() {
+		return merchant_food_mapping;
+	}
+
+	public void setMerchant_food_mapping(Set<Merchant_Food_Mapping> merchant_food_mapping) {
+		this.merchant_food_mapping = merchant_food_mapping;
+	}*/
+	
+	
+
+	public Set<Employee> getEmployee() {
+		return employee;
+	}
+
+	public Set<Food_Menu> getFoodMenuList() {
+		return foodMenuList;
+	}
+
+	public void setFoodMenuList(Set<Food_Menu> foodMenuList) {
+		this.foodMenuList = foodMenuList;
+	}
+
+	public void setEmployee(Set<Employee> employee) {
+		this.employee = employee;
+	}
+    
+    
 }

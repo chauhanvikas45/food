@@ -4,6 +4,8 @@ import com.qualteco.food.constant.Category;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @TypeDef(
@@ -22,8 +24,8 @@ public class Menu_Category {
     @Type(type = "category_enum")
     private Category categoryName;
 
-    @OneToOne(mappedBy = "menu_category")
-    private Food_Menu food_menu;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "menu_category")
+    private Set<Food_Menu> food_menu;
 
     public Menu_Category() {
     }
@@ -43,4 +45,14 @@ public class Menu_Category {
     public void setCategoryName(Category categoryName) {
         this.categoryName = categoryName;
     }
+
+	public Set<Food_Menu> getFood_menu() {
+		return food_menu;
+	}
+
+	public void setFood_menu(Set<Food_Menu> food_menu) {
+		this.food_menu = food_menu;
+	}
+    
+    
 }

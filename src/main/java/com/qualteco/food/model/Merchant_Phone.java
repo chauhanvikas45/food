@@ -12,8 +12,8 @@ public class Merchant_Phone {
     private Integer phoneNumber;
     private String contactType;
 
-    @OneToOne()
-    @MapsId
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MERCHANT_ID")
     private Merchant merchant;
 
 

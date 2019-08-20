@@ -10,22 +10,22 @@ public class Employee_Order_Details {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToOne
-    @MapsId
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
     private Date orderDate;
     //TODO mapping
 
 
-   /* @OneToOne
-    @MapsId
+    @ManyToOne
+    @JoinColumn(name = "FOOD_MENU_ID")
     private Food_Menu food_menu;
 
-    */
+    
 
     //TODO mapping
-    @OneToOne
-    @MapsId
+    @ManyToOne
+    @JoinColumn(name = "ALA_CARTE_MENU_ID")
     private Ala_carte_Menu ala_carte_menu;
 
 
@@ -56,13 +56,13 @@ public class Employee_Order_Details {
         this.orderDate = orderDate;
     }
 
-   /* public Food_Menu getFood_menu() {
+   public Food_Menu getFood_menu() {
         return food_menu;
     }
 
     public void setFood_menu(Food_Menu food_menu) {
         this.food_menu = food_menu;
-    }*/
+    }
 
     public Ala_carte_Menu getAla_carte_menu() {
         return ala_carte_menu;

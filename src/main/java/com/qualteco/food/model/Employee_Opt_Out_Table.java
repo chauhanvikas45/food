@@ -1,20 +1,19 @@
-/*
+
 package com.qualteco.food.model;
 
 import javax.persistence.*;
 import java.sql.Date;
 
-//@Entity
+@Entity
 public class Employee_Opt_Out_Table {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     //TODO mapping
- */
-/*   @OneToOne
-    @MapsId*//*
-
+ 
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "EMPLOYEE_ID")
     private Employee employee;
 
     private Date optOutFrom;
@@ -58,4 +57,4 @@ public class Employee_Opt_Out_Table {
 
 
 }
-*/
+
