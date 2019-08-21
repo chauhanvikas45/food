@@ -1,8 +1,10 @@
 package com.qualteco.food.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Food_Menu {
 
     @Id
@@ -11,14 +13,48 @@ public class Food_Menu {
     private String itemName;
     private boolean isAvailable;
     //TODO mapping
-    //@OneToMany
-    private Days daysId;
+    @ManyToOne
+    @JoinColumn(name = "DAY_ID")
+    private Days day;
     //TODO mapping
-    @OneToOne(mappedBy = "categoryName_id")
-    private Menu_Category menu_categoryId;
+    @ManyToOne()
+    @JoinColumn(name = "MENU_CATEGORY_ID")
+    private Menu_Category menu_category;
 
+    /*@OneToMany(fetch = FetchType.LAZY,mappedBy = "food_menu")
+    private Set<Merchant_Food_Mapping> merchant_food_mapping;*/
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "food_menu")
+    private Set<Employee_Order_Details> employee_order_details;
     public Food_Menu() {
     }
+
+
+
+    public Set<Employee_Order_Details> getEmployee_order_details() {
+        return employee_order_details;
+    }
+
+    public void setEmployee_order_details(Set<Employee_Order_Details> employee_order_details) {
+        this.employee_order_details = employee_order_details;
+    }
+
+
+    public Menu_Category getMenu_category() {
+        return menu_category;
+    }
+
+    public void setMenu_category(Menu_Category menu_categoryId) {
+        this.menu_category = menu_categoryId;
+    }
+
+/*    public Set<Merchant_Food_Mapping> getMerchant_food_mapping() {
+        return merchant_food_mapping;
+    }
+
+    public void setMerchant_food_mapping(Set<Merchant_Food_Mapping> merchant_food_mapping) {
+        this.merchant_food_mapping = merchant_food_mapping;
+    }*/
 
     public int getId() {
         return id;
@@ -44,19 +80,11 @@ public class Food_Menu {
         isAvailable = available;
     }
 
-    public Days getDaysId() {
-        return daysId;
+    public Days getDay() {
+        return day;
     }
 
-    public void setDaysId(Days daysId) {
-        this.daysId = daysId;
-    }
-
-    public Menu_Category getMenu_categoryId() {
-        return menu_categoryId;
-    }
-
-    public void setMenu_categoryId(Menu_Category menu_categoryId) {
-        this.menu_categoryId = menu_categoryId;
+    public void setDay(Days day) {
+        this.day = day;
     }
 }

@@ -1,24 +1,32 @@
 package com.qualteco.food.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
-//@Entity
+@Entity
 public class Employee_Order_Details {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private Employee employeeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMPLOYEE_ID")
+    private Employee employee;
     private Date orderDate;
     //TODO mapping
-    private Food_Menu food_menuId;
+
+
+    @ManyToOne
+    @JoinColumn(name = "FOOD_MENU_ID")
+    private Food_Menu food_menu;
+
+    
+
     //TODO mapping
-    private Ala_carte_Menu ala_carte_menuId;
+    @ManyToOne
+    @JoinColumn(name = "ALA_CARTE_MENU_ID")
+    private Ala_carte_Menu ala_carte_menu;
 
 
     public Employee_Order_Details() {
@@ -32,12 +40,12 @@ public class Employee_Order_Details {
         this.id = id;
     }
 
-    public Employee getEmployeeId() {
-        return employeeId;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeeId(Employee employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Date getOrderDate() {
@@ -48,19 +56,19 @@ public class Employee_Order_Details {
         this.orderDate = orderDate;
     }
 
-    public Food_Menu getFood_menuId() {
-        return food_menuId;
+   public Food_Menu getFood_menu() {
+        return food_menu;
     }
 
-    public void setFood_menuId(Food_Menu food_menuId) {
-        this.food_menuId = food_menuId;
+    public void setFood_menu(Food_Menu food_menu) {
+        this.food_menu = food_menu;
     }
 
-    public Ala_carte_Menu getAla_carte_menuId() {
-        return ala_carte_menuId;
+    public Ala_carte_Menu getAla_carte_menu() {
+        return ala_carte_menu;
     }
 
-    public void setAla_carte_menuId(Ala_carte_Menu ala_carte_menuId) {
-        this.ala_carte_menuId = ala_carte_menuId;
+    public void setAla_carte_menu(Ala_carte_Menu ala_carte_menu) {
+        this.ala_carte_menu = ala_carte_menu;
     }
 }

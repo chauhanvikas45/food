@@ -1,11 +1,10 @@
 package com.qualteco.food.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Set;
 
-//@Entity
+import javax.persistence.*;
+
+@Entity
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,10 +15,34 @@ public class Employee {
 
     private boolean deletionFlag;
 
-    private Merchant merchantId;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employee")
+    private Set<Employee_Opt_Out_Table> employee_opt_out_table;
+
+    @ManyToOne(fetch =FetchType.LAZY)
+    @JoinColumn(name = "MERCHANT_ID")
+    private Merchant merchant;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "employee")
+    private Set<Employee_Order_Details> employee_order_details;
 
 
     public Employee() {
+    }
+
+    public Set<Employee_Order_Details> getEmployee_order_details() {
+        return employee_order_details;
+    }
+
+    public void setEmployee_order_details(Set<Employee_Order_Details> employee_order_details) {
+        this.employee_order_details = employee_order_details;
+    }
+
+    public Set<Employee_Opt_Out_Table> getEmployee_opt_out_table() {
+        return employee_opt_out_table;
+    }
+
+    public void setEmployee_opt_out_table(Set<Employee_Opt_Out_Table> employee_opt_out_table) {
+        this.employee_opt_out_table = employee_opt_out_table;
     }
 
     public int getId() {
@@ -54,11 +77,11 @@ public class Employee {
         this.deletionFlag = deletionFlag;
     }
 
-    public Merchant getMerchantId() {
-        return merchantId;
+    public Merchant getMerchant() {
+        return merchant;
     }
 
-    public void setMerchantId(Merchant merchantId) {
-        this.merchantId = merchantId;
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }

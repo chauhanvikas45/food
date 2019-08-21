@@ -1,9 +1,8 @@
 package com.qualteco.food.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
-//@Entity
+@Entity
 public class Merchant_Address {
 
     @Id
@@ -14,9 +13,9 @@ public class Merchant_Address {
     private String landmark;
 
     //TODO mapping
-    @OneToOne()
-    @MapsId
-    private Merchant merchantId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MERCHANT_ID")
+    private Merchant merchant;
 
     public Merchant_Address() {
     }
@@ -53,11 +52,11 @@ public class Merchant_Address {
         this.landmark = landmark;
     }
 
-    public Merchant getMerchantId() {
-        return merchantId;
+    public Merchant getMerchant() {
+        return merchant;
     }
 
-    public void setMerchantId(Merchant merchantId) {
-        this.merchantId = merchantId;
+    public void setMerchant(Merchant merchant) {
+        this.merchant = merchant;
     }
 }
