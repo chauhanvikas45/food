@@ -14,9 +14,18 @@ public class MerchantDto {
     private Set<Merchant_Phone> merchant_phones;
     private Set<Food_Menu> foodMenuList;
     private Set<Employee> employee;
+    private String email;
 
     public String getMerchantName() {
         return merchantName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setMerchantName(String merchantName) {

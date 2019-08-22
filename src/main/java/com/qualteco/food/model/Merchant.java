@@ -1,6 +1,7 @@
 package com.qualteco.food.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,25 +18,26 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-public class Merchant/* extends Base*/{
+public class Merchant{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @CreationTimestamp
-    private Date creationTime;
+    private LocalDateTime creationTime;
     @UpdateTimestamp
-    private Date lastUpdationTime;
+    private LocalDateTime lastUpdationTime;
 
     private String merchantName;
+    private String email;
 
     private boolean deletionFlag;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant",cascade = CascadeType.ALL)
     //@JoinColumn(name = "address_id", referencedColumnName = "id")
     private Set<Merchant_Address> merchant_addresses;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant",cascade = CascadeType.ALL)
     private Set<Merchant_Phone> merchant_phones;
 
 
@@ -51,7 +53,7 @@ public class Merchant/* extends Base*/{
     private Set<Food_Menu> foodMenuList;
     
     
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant",cascade = CascadeType.ALL)
     private Set<Employee> employee;
 
 
@@ -59,6 +61,14 @@ public class Merchant/* extends Base*/{
 
 
     public Merchant() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {
@@ -69,19 +79,19 @@ public class Merchant/* extends Base*/{
         this.id = id;
     }
 
-    public Date getCreationTime() {
+    public LocalDateTime getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(Date creationTime) {
+    public void setCreationTime(LocalDateTime creationTime) {
         this.creationTime = creationTime;
     }
 
-    public Date getLastUpdationTime() {
+    public LocalDateTime getLastUpdationTime() {
         return lastUpdationTime;
     }
 
-    public void setLastUpdationTime(Date lastUpdationTime) {
+    public void setLastUpdationTime(LocalDateTime lastUpdationTime) {
         this.lastUpdationTime = lastUpdationTime;
     }
 

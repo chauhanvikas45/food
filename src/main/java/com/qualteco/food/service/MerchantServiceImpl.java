@@ -19,7 +19,7 @@ public class MerchantServiceImpl implements MerchantService {
         Merchant merchant = null;
         Merchant merchantResponse= null;
         if(null == merchantDto)
-            throw new Merchant405Exception("invalid data body");
+            throw new Merchant405Exception("Invalid data body");
         else{
             merchant = MerchantMapper.mapDtoToEntity(merchantDto);
             merchantResponse = merchantDao.save(merchant);
