@@ -13,7 +13,7 @@ public class Merchant_Phone {
     private String contactType;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MERCHANT_ID")
+    @JoinColumn(name = "MERCHANT_ID", insertable = false, updatable = false)
     private Merchant merchant;
 
 

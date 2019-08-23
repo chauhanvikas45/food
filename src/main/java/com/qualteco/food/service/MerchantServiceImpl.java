@@ -8,6 +8,8 @@ import com.qualteco.food.model.Merchant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MerchantServiceImpl implements MerchantService {
 
@@ -17,14 +19,16 @@ public class MerchantServiceImpl implements MerchantService {
     @Override
     public MerchantDto addMerchant(MerchantDto merchantDto) throws Merchant405Exception {
         Merchant merchant = null;
-        Merchant merchantResponse= null;
+        Optional<Merchant> merchantResponse= null;
         if(null == merchantDto)
             throw new Merchant405Exception("Invalid data body");
         else{
             merchant = MerchantMapper.mapDtoToEntity(merchantDto);
-            merchantResponse = merchantDao.save(merchant);
+            merchantDao.save(merchant);
+
+            merchantResponse = merchantDao.findById(1);
         }
 
-        return MerchantMapper.mapEntityToDto(merchantResponse);
+        return MerchantMapper.mapEntityToDto( merchantResponse);
     }
 }

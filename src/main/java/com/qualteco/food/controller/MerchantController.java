@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.qualteco.food.service.MerchantService;
 
 @RestController
+@RequestMapping("/company")
 public class MerchantController {
 
     @Autowired

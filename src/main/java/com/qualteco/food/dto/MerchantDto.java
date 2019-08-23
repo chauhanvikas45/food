@@ -8,6 +8,7 @@ import com.qualteco.food.model.Merchant_Phone;
 import java.util.Set;
 
 public class MerchantDto {
+    private int id;
     private String merchantName;
     private boolean deletionFlag;
     private Set<Merchant_Address> merchant_addresses;
@@ -18,6 +19,14 @@ public class MerchantDto {
 
     public String getMerchantName() {
         return merchantName;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {

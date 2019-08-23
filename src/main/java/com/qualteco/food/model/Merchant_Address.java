@@ -13,8 +13,8 @@ public class Merchant_Address {
     private String landmark;
 
     //TODO mapping
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MERCHANT_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "MERCHANT_ID", insertable = false, updatable = false)
     private Merchant merchant;
 
     public Merchant_Address() {

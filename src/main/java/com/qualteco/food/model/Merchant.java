@@ -33,11 +33,12 @@ public class Merchant{
 
     private boolean deletionFlag;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant",cascade = CascadeType.ALL)
-    //@JoinColumn(name = "address_id", referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "MERCHANT_ID")
     private Set<Merchant_Address> merchant_addresses;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "MERCHANT_ID")
     private Set<Merchant_Phone> merchant_phones;
 
 
@@ -53,7 +54,7 @@ public class Merchant{
     private Set<Food_Menu> foodMenuList;
     
     
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "merchant",cascade = CascadeType.ALL)
     private Set<Employee> employee;
 
 
