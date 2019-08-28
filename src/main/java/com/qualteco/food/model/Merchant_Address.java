@@ -14,7 +14,7 @@ public class Merchant_Address {
 
     //TODO mapping
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "MERCHANT_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "MERCHANT_ID")
     private Merchant merchant;
 
     public Merchant_Address() {

@@ -37,8 +37,7 @@ public class Merchant{
     @JoinColumn(name = "MERCHANT_ID")
     private Set<Merchant_Address> merchant_addresses;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "MERCHANT_ID")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "merchant",cascade = CascadeType.ALL)
     private Set<Merchant_Phone> merchant_phones;
 
 

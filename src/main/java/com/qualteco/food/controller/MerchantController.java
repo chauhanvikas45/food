@@ -2,6 +2,8 @@ package com.qualteco.food.controller;
 
 import com.qualteco.food.dto.MerchantDto;
 import com.qualteco.food.exception.Merchant405Exception;
+import com.qualteco.food.request.AddMerchantRequest;
+import com.qualteco.food.response.AddMerchantResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,6 @@ import com.qualteco.food.service.MerchantService;
 @RequestMapping("/company")
 public class MerchantController {
 
-    @Autowired
     private MerchantService merchantService;
 
     public MerchantController(MerchantService merchantService) {
@@ -24,13 +25,8 @@ public class MerchantController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/add", produces = "application/json")
-    public ResponseEntity addMerchant(@RequestBody MerchantDto merchantDto) {
-        MerchantDto merchantDtoResponse = null;
-        try {
-            merchantDtoResponse = merchantService.addMerchant(merchantDto);
-        } catch (Merchant405Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return new ResponseEntity(merchantDtoResponse, HttpStatus.CREATED);
+    public ResponseEntity addMerchant(@RequestBody AddMerchantRequest addMerchantRequest) {
+        AddMerchantResponse addMerchantResponse = merchantService.addMerchant(addMerchantRequest);
+        return new ResponseEntity(addMerchantResponse, HttpStatus.CREATED);
     }
 }

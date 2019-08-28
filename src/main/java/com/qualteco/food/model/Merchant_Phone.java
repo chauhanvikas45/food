@@ -12,8 +12,8 @@ public class Merchant_Phone {
     private Integer phoneNumber;
     private String contactType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MERCHANT_ID", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "MERCHANT_ID")
     private Merchant merchant;
 
 

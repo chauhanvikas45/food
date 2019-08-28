@@ -1,3 +1,4 @@
+/*
 package com.qualteco.food.model;
 
 import com.qualteco.food.constant.Category;
@@ -56,3 +57,4 @@ public class Menu_Category {
     
     
 }
+*/
