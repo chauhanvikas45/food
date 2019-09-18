@@ -4,9 +4,10 @@ import com.qualteco.food.dao.EmployeeDao;
 import com.qualteco.food.exception.Employee400Exception;
 import com.qualteco.food.request.AddEmployeeRequest;
 import com.qualteco.food.response.AddEmployeeResponse;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
     public EmployeeServiceImpl(EmployeeDao employeeDao) {

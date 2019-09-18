@@ -15,13 +15,11 @@ public class Food_Menu {
     private String itemName;
     private boolean isAvailable;
     //TODO mapping
-    /*@ManyToOne
-    @JoinColumn(name = "DAY_ID")*/
-    //@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private WeekDays day;
     //TODO mapping
-   /* @ManyToOne()
-    @JoinColumn(name = "MENU_CATEGORY_ID")*/
+    //@JoinColumn(name = "MENU_CATEGORY_ID")
+    @Enumerated(EnumType.STRING)
     private Category menu_category;
 
     /*@OneToMany(fetch = FetchType.LAZY,mappedBy = "food_menu")
