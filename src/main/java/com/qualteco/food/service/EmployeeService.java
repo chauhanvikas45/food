@@ -5,4 +5,6 @@ import com.qualteco.food.response.AddEmployeeResponse;
 
 public interface EmployeeService {
     AddEmployeeResponse add(AddEmployeeRequest addEmployeeRequest);
+
+    AddEmployeeResponse getEmployeeId(Integer id);
 }

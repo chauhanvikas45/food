@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -35,9 +36,12 @@ public class Merchant{
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "MERCHANT_ID")
+    @JsonManagedReference
     private Set<Merchant_Address> merchant_addresses;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "merchant",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JoinColumn(name = "MERCHANT_ID")
     private Set<Merchant_Phone> merchant_phones;
 
 

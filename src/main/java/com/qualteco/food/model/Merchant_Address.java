@@ -1,5 +1,7 @@
 package com.qualteco.food.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,8 +15,9 @@ public class Merchant_Address {
     private String landmark;
 
     //TODO mapping
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "MERCHANT_ID")
+    @JsonBackReference
     private Merchant merchant;
 
     public Merchant_Address() {

@@ -1,5 +1,7 @@
 package com.qualteco.food.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,8 +14,9 @@ public class Merchant_Phone {
     private Integer phoneNumber;
     private String contactType;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "MERCHANT_ID")
+    @JsonBackReference
     private Merchant merchant;
 
 

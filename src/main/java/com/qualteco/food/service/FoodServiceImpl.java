@@ -2,6 +2,7 @@ package com.qualteco.food.service;
 
 import com.qualteco.food.dao.FoodDao;
 import com.qualteco.food.exception.Food400Exception;
+import com.qualteco.food.exception.Food404Exception;
 import com.qualteco.food.mapper.FoodMapper;
 import com.qualteco.food.model.Food_Menu;
 import com.qualteco.food.request.AddFoodRequest;
@@ -22,7 +23,14 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public AddFoodResponse addFood(AddFoodRequest addFoodRequest) {
         Optional.ofNullable(addFoodRequest).orElseThrow(() -> new Food400Exception("invalid food body"));
-            Food_Menu  food_menu = foodDao.save(FoodMapper.mapRequestToEntity(addFoodRequest));
+        Food_Menu food_menu = foodDao.save(FoodMapper.mapRequestToEntity(addFoodRequest));
         return FoodMapper.mapEntityToResponse(food_menu);
+    }
+
+    @Override
+    public AddFoodResponse getFoodById(Integer id) throws Food404Exception {
+        Optional.ofNullable(id).orElseThrow(() -> new Food404Exception("food item not found"));
+        Optional<Food_Menu> food_menu = foodDao.findById(id);
+        return FoodMapper.mapEntityToResponse(food_menu.get());
     }
 }
