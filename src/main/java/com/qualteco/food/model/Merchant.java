@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -47,7 +48,7 @@ public class Merchant{
 
     /*@OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
     private Set<Merchant_Food_Mapping> merchant_food_mapping;*/
-    
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "MERCHANT_FOOD_MAPPING",
@@ -55,9 +56,11 @@ public class Merchant{
             inverseJoinColumns = @JoinColumn(name = "FOOD_MENU_ID", referencedColumnName="id")
     )
     private Set<Food_Menu> foodMenuList;
-    
-    
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "merchant",cascade = CascadeType.ALL)
+
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JoinColumn(name = "MERCHANT_ID")
     private Set<Employee> employee;
 
 
@@ -138,8 +141,8 @@ public class Merchant{
 	public void setMerchant_food_mapping(Set<Merchant_Food_Mapping> merchant_food_mapping) {
 		this.merchant_food_mapping = merchant_food_mapping;
 	}*/
-	
-	
+
+
 
 	public Set<Employee> getEmployee() {
 		return employee;
@@ -156,6 +159,6 @@ public class Merchant{
 	public void setEmployee(Set<Employee> employee) {
 		this.employee = employee;
 	}
-    
-    
+
+
 }

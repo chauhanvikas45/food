@@ -1,5 +1,8 @@
 package com.qualteco.food.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Set;
 
 import javax.persistence.*;
@@ -20,9 +23,11 @@ public class Employee {
 
     @ManyToOne(fetch =FetchType.LAZY)
     @JoinColumn(name = "MERCHANT_ID")
+    @JsonBackReference
     private Merchant merchant;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "employee")
+
     private Set<Employee_Order_Details> employee_order_details;
 
 

@@ -7,13 +7,22 @@ import com.qualteco.food.model.Employee_Order_Details;
 import java.util.Set;
 
 public class AddFoodRequest {
+    private Integer id;
     private String itemName;
-    //private boolean isAvailable;
+    private boolean isAvailable;
     private WeekDays day;
     private Category menu_category;
     private Set<Employee_Order_Details> employee_order_details;
 
     public AddFoodRequest() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getItemName() {
@@ -24,13 +33,13 @@ public class AddFoodRequest {
         this.itemName = itemName;
     }
 
-    /*public boolean isAvailable() {
+    public boolean isAvailable() {
         return isAvailable;
     }
 
     public void setAvailable(boolean available) {
         isAvailable = available;
-    }*/
+    }
 
     public WeekDays getDay() {
         return day;

@@ -7,13 +7,22 @@ import com.qualteco.food.model.Merchant;
 import java.util.Set;
 
 public class AddEmployeeRequest {
-
+    private Integer id;
     private String employeeName;
     private String employeeNumber;
     private boolean deletionFlag;
     private Set<Employee_Opt_Out_Table> employee_opt_out_table;
     private Merchant merchant;
     private Set<Employee_Order_Details> employee_order_details;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getEmployeeName() {
         return employeeName;

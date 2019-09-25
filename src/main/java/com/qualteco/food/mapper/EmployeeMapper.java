@@ -1,11 +1,7 @@
 package com.qualteco.food.mapper;
 
-import com.qualteco.food.constant.Category;
-import com.qualteco.food.constant.WeekDays;
 import com.qualteco.food.model.Employee;
-import com.qualteco.food.model.Food_Menu;
 import com.qualteco.food.request.AddEmployeeRequest;
-import com.qualteco.food.request.AddFoodRequest;
 import com.qualteco.food.response.AddEmployeeResponse;
 
 public class EmployeeMapper {
@@ -21,7 +17,9 @@ public class EmployeeMapper {
     }
 
     public static AddEmployeeResponse mapEntityToResponse(Employee employee){
+
         AddEmployeeResponse addEmployeeResponse = new AddEmployeeResponse();
+        addEmployeeResponse.setId(employee.getId());
         addEmployeeResponse.setEmployeeName(employee.getEmployeeName());
         addEmployeeResponse.setEmployeeNumber(employee.getEmployeeNumber());
         addEmployeeResponse.setMerchant(employee.getMerchant());
