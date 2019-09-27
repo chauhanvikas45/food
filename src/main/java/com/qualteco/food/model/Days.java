@@ -1,3 +1,4 @@
+/*
 package com.qualteco.food.model;
 
 import com.qualteco.food.constant.WeekDays;
@@ -9,7 +10,7 @@ public class Days {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Enumerated(EnumType.STRING)
+    //@Enumerated(EnumType.STRING)
     private WeekDays days;
 
 
@@ -32,3 +33,4 @@ public class Days {
         this.days = days;
     }
 }
+*/

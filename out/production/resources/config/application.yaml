@@ -1,0 +1,9 @@
+#mongoDb
+spring:
+  data:
+  mongodb:
+    host: localhost
+    port: 27017
+    #database: FOOD
+    uri: mongodb://localhost/FOOD
+

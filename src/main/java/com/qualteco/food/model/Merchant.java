@@ -1,6 +1,7 @@
 package com.qualteco.food.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,35 +14,41 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-public class Merchant/* extends Base*/{
+public class Merchant{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @CreationTimestamp
-    private Date creationTime;
+    private LocalDateTime creationTime;
     @UpdateTimestamp
-    private Date lastUpdationTime;
+    private LocalDateTime lastUpdationTime;
 
     private String merchantName;
+    private String email;
 
     private boolean deletionFlag;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
-    //@JoinColumn(name = "address_id", referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "MERCHANT_ID")
+    @JsonManagedReference
     private Set<Merchant_Address> merchant_addresses;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JoinColumn(name = "MERCHANT_ID")
     private Set<Merchant_Phone> merchant_phones;
 
 
     /*@OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
     private Set<Merchant_Food_Mapping> merchant_food_mapping;*/
-    
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "MERCHANT_FOOD_MAPPING",
@@ -49,9 +56,11 @@ public class Merchant/* extends Base*/{
             inverseJoinColumns = @JoinColumn(name = "FOOD_MENU_ID", referencedColumnName="id")
     )
     private Set<Food_Menu> foodMenuList;
-    
-    
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "merchant")
+
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JoinColumn(name = "MERCHANT_ID")
     private Set<Employee> employee;
 
 
@@ -59,6 +68,14 @@ public class Merchant/* extends Base*/{
 
 
     public Merchant() {
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public int getId() {
@@ -69,19 +86,19 @@ public class Merchant/* extends Base*/{
         this.id = id;
     }
 
-    public Date getCreationTime() {
+    public LocalDateTime getCreationTime() {
         return creationTime;
     }
 
-    public void setCreationTime(Date creationTime) {
+    public void setCreationTime(LocalDateTime creationTime) {
         this.creationTime = creationTime;
     }
 
-    public Date getLastUpdationTime() {
+    public LocalDateTime getLastUpdationTime() {
         return lastUpdationTime;
     }
 
-    public void setLastUpdationTime(Date lastUpdationTime) {
+    public void setLastUpdationTime(LocalDateTime lastUpdationTime) {
         this.lastUpdationTime = lastUpdationTime;
     }
 
@@ -124,8 +141,8 @@ public class Merchant/* extends Base*/{
 	public void setMerchant_food_mapping(Set<Merchant_Food_Mapping> merchant_food_mapping) {
 		this.merchant_food_mapping = merchant_food_mapping;
 	}*/
-	
-	
+
+
 
 	public Set<Employee> getEmployee() {
 		return employee;
@@ -142,6 +159,6 @@ public class Merchant/* extends Base*/{
 	public void setEmployee(Set<Employee> employee) {
 		this.employee = employee;
 	}
-    
-    
+
+
 }

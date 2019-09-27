@@ -1,8 +1,10 @@
 package com.qualteco.food.model;
 
-import java.util.Set;
+import com.qualteco.food.constant.Category;
+import com.qualteco.food.constant.WeekDays;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Food_Menu {
@@ -13,22 +15,22 @@ public class Food_Menu {
     private String itemName;
     private boolean isAvailable;
     //TODO mapping
-    @ManyToOne
-    @JoinColumn(name = "DAY_ID")
-    private Days day;
+    @Enumerated(EnumType.STRING)
+    private WeekDays day;
     //TODO mapping
-    @ManyToOne()
-    @JoinColumn(name = "MENU_CATEGORY_ID")
-    private Menu_Category menu_category;
+    //@JoinColumn(name = "MENU_CATEGORY_ID")
+    @Enumerated(EnumType.STRING)
+    private Category menu_category;
 
     /*@OneToMany(fetch = FetchType.LAZY,mappedBy = "food_menu")
     private Set<Merchant_Food_Mapping> merchant_food_mapping;*/
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "food_menu")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "food_menu")
+
     private Set<Employee_Order_Details> employee_order_details;
+
     public Food_Menu() {
     }
-
 
 
     public Set<Employee_Order_Details> getEmployee_order_details() {
@@ -39,12 +41,19 @@ public class Food_Menu {
         this.employee_order_details = employee_order_details;
     }
 
+    public WeekDays getDay() {
+        return day;
+    }
 
-    public Menu_Category getMenu_category() {
+    public void setDay(WeekDays day) {
+        this.day = day;
+    }
+
+    public Category getMenu_category() {
         return menu_category;
     }
 
-    public void setMenu_category(Menu_Category menu_categoryId) {
+    public void setMenu_category(Category menu_categoryId) {
         this.menu_category = menu_categoryId;
     }
 
@@ -80,11 +89,11 @@ public class Food_Menu {
         isAvailable = available;
     }
 
-    public Days getDay() {
+    /*public Days getDay() {
         return day;
     }
 
     public void setDay(Days day) {
         this.day = day;
-    }
+    }*/
 }
