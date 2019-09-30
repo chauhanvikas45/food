@@ -15,7 +15,7 @@ node {
 
     stage('Start App') {
     checkout scm
-    nohup sh "./gradlew bootRun  --no-daemon" &
+    sh " nohup ./gradlew bootRun  --no-daemon &"
   }
 
 }
