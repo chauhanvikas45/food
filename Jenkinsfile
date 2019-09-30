@@ -13,9 +13,23 @@ node {
     sh "./gradlew test  --no-daemon"
   }
 
-    stage('Start App') {
-    checkout scm
-    sh " nohup ./gradlew bootRun  --no-daemon &"
+  stage("Docker build") {
+       steps {
+
+            sh "docker build -t food/food_1 ."
+       }
+  }
+  stage("Docker push") {
+       steps {
+     sh "docker login -u chauhanvikas45 -p Docker@1234"
+  sh "docker push food/food_1"
+       }
+  }
+  stage("Deploy to staging") {
+       steps {
+
+            sh "docker run -d --rm -p 8081:8081 --name food_1 food/food_1"
+       }
   }
 
 }
