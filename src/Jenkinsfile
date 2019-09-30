@@ -12,7 +12,10 @@ node {
     checkout scm
     sudo sh "./gradlew test  --no-daemon"
   }
-
+stage('start App') {
+    checkout scm
+    sudo sh "./gradlew bootRun  --no-daemon"
+  }
 
 }
 
