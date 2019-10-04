@@ -2,8 +2,13 @@
 def gitRepoUrl = 'https://github.com/chauhanvikas45/food.git'
 def serviceName = 'food'
 
+environment {
+    registry = "chauhanvikas45/app"
+    registryCredential = 'chauhanvikas45docker'
+    dockerImage=''
+}
+
 node {
- agent { dockerfile true }
   stage('Build App') {
     checkout scm
     sh "./gradlew clean build --no-daemon"
@@ -14,19 +19,18 @@ node {
     sh "./gradlew test  --no-daemon"
   }
 
-
   stage("Docker build") {
 
-    def customImage = docker.build("my-image:${env.BUILD_ID}")
-        customImage.push()
-
-        customImage.push('latest')
+           dockerImage = docker.build registry + ":$BUILD_NUMBER"
+           docker.withRegistry( '', registryCredential ) {
+                       dockerImage.push()
+            sh "docker rmi $registry:$BUILD_NUMBER"
 
   }
 
   stage("Deploy to staging") {
 
-     sh "docker run -d --rm -p 8081:8081 --name food "my-image:${env.BUILD_ID}/latest"
+     sh "docker run -d --rm -p 8081:8081 --name food "$serviceName@"+"$BUILD_NUMBER"/latest"
 
   }
 
