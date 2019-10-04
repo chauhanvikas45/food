@@ -30,7 +30,7 @@ node {
 
   stage("Deploy to staging") {
 
-     sh "docker run -d --rm -p 8081:8081 --name food "$serviceName@"+"$BUILD_NUMBER"/latest"
+     sh "docker run -d --rm -p 8081:8081 --name food $registry:$BUILD_NUMBER/latest"
 
   }
 
