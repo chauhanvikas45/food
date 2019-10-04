@@ -6,10 +6,10 @@ LABEL maintainer="vikas.chauhan@7n.com"
   # Add a volume pointing to /tmp
 VOLUME /tmp
 
-RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
-  && tar xzvf docker-17.04.0-ce.tgz \
-  && mv docker/docker /usr/local/bin \
-  && rm -r docker docker-17.04.0-ce.tgz
+#RUN curl -fsSLO https://get.docker.com/builds/Linux/x86_64/docker-17.04.0-ce.tgz \
+ # && tar xzvf docker-17.04.0-ce.tgz \
+  #&& mv docker/docker /usr/local/bin \
+  #&& rm -r docker docker-17.04.0-ce.tgz
 
   # Make port 8080 available to the world outside this container
 EXPOSE 8081
