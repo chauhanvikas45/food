@@ -21,7 +21,6 @@ node {
         customImage.push()
 
         customImage.push('latest')
-        #sh "docker build -t food/latest ."
 
   }
 
