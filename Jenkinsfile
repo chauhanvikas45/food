@@ -25,16 +25,11 @@ node {
 
 
   stage("Docker build") {
-
-
-            sh "docker build -t food/latest ."
-
+      sh "docker build -t food/latest ."
   }
 
   stage("Deploy to staging") {
-
      sh "docker run -d --rm -p 8081:8081 --restart=always --name food food/latest"
-
   }
 
 }
