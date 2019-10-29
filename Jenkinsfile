@@ -3,15 +3,15 @@ def gitRepoUrl = 'https://github.com/chauhanvikas45/food.git'
 def serviceName = 'food'
 
 node {
-    try {
-    stage("Building SONAR ...") {
-        sh './gradlew clean sonarqube'
-    }
-    } catch (e) {
-        emailext attachLog: true, body: 'See attached log', subject: 'BUSINESS Build Failure', to: 'chauhanvikas45@yahoo.co.in.com'
-        step([$class: 'WsCleanup'])
-            return
-        }
+    //try {
+    //stage("Building SONAR ...") {
+      //  sh './gradlew clean sonarqube'
+    //}
+    //} catch (e) {
+      //  emailext attachLog: true, body: 'See attached log', subject: 'BUSINESS Build Failure', to: 'chauhanvikas45@yahoo.co.in.com'
+       // step([$class: 'WsCleanup'])
+        //    return
+        //}
 
   stage('Build App') {
     checkout scm
