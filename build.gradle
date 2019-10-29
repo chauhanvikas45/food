@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.1.7.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 	id 'java'
+	id: 'org.sonarqube'
 }
 
 group = 'com.qualteco'
@@ -19,6 +20,14 @@ repositories {
 	mavenCentral()
 }
 
+/*sonarqube {
+	properties {
+		property "sonar.host.url", http://sonar.xxxxx.com //  url is your sonar server
+		property "sonar.projectName", food application"   //  this name will appear in dashboard
+		property "sonar.projectKey", "foodKey" // It sould be a keybased on this report is created
+		property "sonar.groovy.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"    }
+}*/
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -30,4 +39,5 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	classpath "org.sonarsource.scanner.gradle: sonarqube-gradle-plugin:2.5"
 }
