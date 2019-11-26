@@ -29,7 +29,7 @@ node {
   }
 
   stage("Deploy to staging") {
-     sh "docker run -d --rm -p 8081:8081 --restart on-failure --name food food/latest"
+     sh "docker run -d --rm -p 8081:8081 --name food food/latest"
   }
 
 }
