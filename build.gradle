@@ -2,7 +2,6 @@ plugins {
 	id 'org.springframework.boot' version '2.1.7.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.7.RELEASE'
 	id 'java'
-	id: 'org.sonarqube'
 }
 
 group = 'com.qualteco'
@@ -39,5 +38,4 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	classpath "org.sonarsource.scanner.gradle: sonarqube-gradle-plugin:2.5"
 }
